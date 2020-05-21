@@ -3,8 +3,10 @@ using System.Data;
 
 namespace CodeBlogFitness.BL.Model
 {
+    [Serializable]
     public class User
     {
+        
         #region Свойства Пользователя 
         public string Name { get; }
 
@@ -37,7 +39,7 @@ namespace CodeBlogFitness.BL.Model
                 throw new ArgumentNullException("Имя пользоватля не может быть пустым ", nameof(name));
             }
 
-            if (Gender == null)
+            if (gender == null)
             {
                 throw new ArgumentNullException("Пол Не может быть кривым", nameof(gender));
             }
