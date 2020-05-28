@@ -61,6 +61,11 @@ namespace CodeBlogFitness.BL.Model
             #endregion
         }
 
+        public User (string name):this
+        {
+            name=
+        }
+
         public override string ToString()
         {
             return Name;
