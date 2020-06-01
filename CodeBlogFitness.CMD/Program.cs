@@ -10,17 +10,42 @@ namespace CodeBlogFitness.CMD
         static void Main(string[] args)
         {
             Console.WriteLine("Добрый день ");
-           
-            
+
+
             Console.WriteLine("Введите имя пользователя");
             var name = Console.ReadLine();
 
             var userController = new UserController(name);
 
+            if (userController.IsNewUser)
+            {
+                Console.WriteLine("Введите свой пол");
+                var gender = Console.ReadLine();
+                DateTime birthDate;
+                double weight;
+                double height;
 
-            userController.Save();
 
-           
+                while (true)
+                {
+                    Console.WriteLine("ВВод даты рождения");
+                    if (DateTime.TryParse(Console.ReadLine(), out birthDate))
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Неправильная дата");
+                    }
+
+                }
+
+
+                
+            }
+
+            Console.WriteLine(userController.CurrentUser);
+            Console.ReadLine();
         }
     }
 }

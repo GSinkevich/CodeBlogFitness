@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Security.Cryptography.X509Certificates;
 
 namespace CodeBlogFitness.BL.Model
 {
@@ -10,9 +11,9 @@ namespace CodeBlogFitness.BL.Model
         #region Свойства Пользователя 
         public string Name { get; }
 
-        public Gender Gender { get; }
+        public Gender Gender { get; set; }   //Можно записывать что угодно....
           
-        public DateTime BirthDate { get; }
+        public DateTime BirthDate { get; set; } //Можно записывать что угодно....
 
         public double Weight { get; set; }
 
@@ -58,17 +59,28 @@ namespace CodeBlogFitness.BL.Model
             {
                 throw new ArgumentNullException("Рост не может быть меньше 0", nameof(height));
             }
-            #endregion
-        }
 
-        public User (string name):this
+
+           
+        }
+        #endregion
+
+        public int Age {
+            get { return DateTime.Now.Year - BirthDate.Year; }//некорректная проверка даты рождения создать нормальную
+        }
+        public User (string name)
         {
-            name=
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentNullException("Имя пользоватля не может быть пустым ", nameof(name));
+            }
+
+            Name = name; 
         }
 
         public override string ToString()
         {
-            return Name;
+            return Name + " " + Age ;
         }
 
     }
