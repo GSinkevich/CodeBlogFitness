@@ -17,7 +17,7 @@ namespace CodeBlogFitness.CMD
 
             var userController = new UserController(name);
 
-            if (userController.IsNewUser)
+            if (userController.IsNewUser)//реализованная проверка на пользователя
             {
                 Console.WriteLine("Введите свой пол");
                 var gender = Console.ReadLine();
@@ -39,7 +39,10 @@ namespace CodeBlogFitness.CMD
             Console.WriteLine(userController.CurrentUser);
             Console.ReadLine();
         }
-
+        /// <summary>
+        /// Проверка на корректность введенной даты рождения*
+        /// </summary>
+        /// <returns></returns>
         private static DateTime ParseDateTime()
         {
             DateTime birthDate;
@@ -60,6 +63,11 @@ namespace CodeBlogFitness.CMD
             return birthDate;
         }
 
+        /// <summary>
+        /// Проверка на корректность введеных данных Вес + Рост *
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         private static double ParseDouble(string name)
         {
             while (true)

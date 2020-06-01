@@ -1,6 +1,4 @@
-﻿
-
-using CodeBlogFitness.BL.Model;
+﻿using CodeBlogFitness.BL.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,13 +17,13 @@ namespace CodeBlogFitness.BL.Controller
         /// </summary>
         /// 
 
-        public List <User> Users { get; }
-        public User CurrentUser { get; }
+        public List <User> Users { get; }// Список пользователей*
+        public User CurrentUser { get; }// Кокретный пользователь*
 
-        public bool IsNewUser { get; } = false;
+        public bool IsNewUser { get; } = false;// чек на нового пользователя*
 
         /// <summary>
-        /// Создание новоого контроллера пользователя
+        /// Создание нового конкретного пользователя
         /// </summary>
         /// <param name="user"></param>
         public UserController(string userName)
@@ -37,7 +35,7 @@ namespace CodeBlogFitness.BL.Controller
 
             Users = GetUsersData();
 
-            CurrentUser = Users.SingleOrDefault(u => u.Name == userName);//единственный пользователь( с именем userName) или Null
+            CurrentUser = Users.SingleOrDefault(u => u.Name == userName);//единственный пользователь( с именем userName) или Null(Сокращаеться до u-users)
 
             if (CurrentUser==null)
             {
@@ -48,6 +46,8 @@ namespace CodeBlogFitness.BL.Controller
             }           
                        
         }
+
+
         /// <summary>
         /// Сохранить данные пользователя
         /// </summary>
@@ -60,6 +60,9 @@ namespace CodeBlogFitness.BL.Controller
                 formatter.Serialize(fs,Users);
             }
         }
+
+
+
         /// <summary>
         /// Получить cписок сохраненный пользователей
         /// </summary>
@@ -84,9 +87,17 @@ namespace CodeBlogFitness.BL.Controller
             }
         }
 
+
+        /// <summary>
+        /// Создание нового пользователя*
+        /// </summary>
+        /// <param name="genderName"></param>
+        /// <param name="birthDay"></param>
+        /// <param name="weight"></param>
+        /// <param name="height"></param>
         public void SetNewUserData(string genderName,DateTime birthDay,double weight= 1,double height= 1)
         {
-            //проверка
+            
 
             CurrentUser.Gender = new Gender(genderName);
             CurrentUser.BirthDate = birthDay;
