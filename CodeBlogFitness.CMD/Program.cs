@@ -1,7 +1,7 @@
 ﻿using CodeBlogFitness.BL.Controller;
 using CodeBlogFitness.BL.Model;
 using System;
-
+using System.Runtime.CompilerServices;
 
 namespace CodeBlogFitness.CMD
 {
@@ -22,30 +22,60 @@ namespace CodeBlogFitness.CMD
                 Console.WriteLine("Введите свой пол");
                 var gender = Console.ReadLine();
                 DateTime birthDate;
-                double weight;
-                double height;
+                birthDate = ParseDateTime();
 
-
-                while (true)
-                {
-                    Console.WriteLine("ВВод даты рождения");
-                    if (DateTime.TryParse(Console.ReadLine(), out birthDate))
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Неправильная дата");
-                    }
-
-                }
-
+                double weight = ParseDouble("Вес");
+                double height = ParseDouble("Рост");
 
                 
+
+                userController.SetNewUserData(gender, birthDate, weight, height);
+
+
             }
+
+
 
             Console.WriteLine(userController.CurrentUser);
             Console.ReadLine();
+        }
+
+        private static DateTime ParseDateTime()
+        {
+            DateTime birthDate;
+            while (true)
+            {
+                Console.WriteLine("ВВод даты рождения");
+                if (DateTime.TryParse(Console.ReadLine(), out birthDate))
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Неправильная дата");
+                }
+
+            }
+
+            return birthDate;
+        }
+
+        private static double ParseDouble(string name)
+        {
+            while (true)
+            {
+                Console.WriteLine($"Введите {name}");
+                if (double.TryParse(Console.ReadLine(), out double value))
+                {
+                    return value;
+                }
+                else
+                {
+                    Console.WriteLine($"Неправильный формат {name}");
+                }
+
+            }
+
         }
     }
 }
