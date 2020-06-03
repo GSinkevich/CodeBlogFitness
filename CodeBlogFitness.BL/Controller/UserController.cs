@@ -7,7 +7,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace CodeBlogFitness.BL.Controller
 {
-    /// <summary>
+    /// <summary> 
     /// Контроллер пользователя
     /// </summary>
     public class UserController
@@ -73,8 +73,9 @@ namespace CodeBlogFitness.BL.Controller
 
             using (var fs = new FileStream("users.dat", FileMode.OpenOrCreate))
             {
-                if(formatter.Deserialize(fs) is List<User> users)//если объект получится 
+                if(fs.Length > 0 && formatter.Deserialize(fs) is List<User> users)//если объект получится 
                                                                  //десериализовать, то он будет помещен в переменную user
+                
                 {
                     return users;
                 }
